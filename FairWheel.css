@@ -19,6 +19,7 @@ header{
     width: 245px;
     height: auto;
     display: block;
+    
 }
 
 @media screen and (max-width: 550px) {
@@ -414,9 +415,10 @@ body{
     font-size: 5vw;
     margin-top: 30vh;
     margin-left: auto; 
-    margin-right: auto; 
+    margin-right: 70px; 
     color: white;
     text-align: right;
+
 }
 
 .items {
@@ -427,6 +429,9 @@ body{
     margin: 20px auto; 
     max-width: 90%; 
     padding-top: 10px;
+}
+.items{
+    margin-top: 100px;
 }
 
 .Radios{
@@ -463,8 +468,8 @@ body{
     width: 200px;
     padding: 5px;
     font-size: 15px; 
-    border: 1px solid #ccc;
-    border-radius: 5px; 
+    border: 1px solid #000000;
+    border-radius: 9px; 
     background-color: #fff; 
     box-shadow: 0 4px 8px rgba(0, 91, 187, 0.5);
     cursor: pointer;
@@ -478,11 +483,57 @@ body{
 
 .Location-picker select:focus {
     outline: none; 
-    border-color: #999; 
+    border-color: #000000; 
 }
 
-.footer {
-    background-color: #333333;
-    margin-top: 28vh; 
+footer {
+    background-color: rgba(217, 217, 217, 0.9);
+    color: #333; 
     padding: 20px;
-}
+    margin-top: 100px;
+    padding-bottom: 1.9vh;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  
+
+  .footer-left,
+  .footer-middle,
+  .footer-right {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .footer-right a {
+    color: #007BFF; 
+    text-decoration: none;
+    margin: 0 5px;
+  }
+  
+  .footer-right a:hover {
+    text-decoration: underline;
+  }
+  
+
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+    }
+    
+    .footer-left,
+    .footer-middle,
+    .footer-right {
+      text-align: center;
+      margin: 10px 0;
+    }
+  }
+  
+  
