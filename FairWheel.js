@@ -37,3 +37,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('resize', checkWindowSize);
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const radioButtons = document.querySelectorAll('input[name="radio-choice"]');
+    const returnDatePicker = document.querySelector('.Date-picker'); 
+
+    function updateSpacing() {
+        if (this.value === 'One-way') {
+            returnDatePicker.style.display = 'none';
+        } else if (this.value === 'round-trip') {
+            returnDatePicker.style.display = 'block';   
+            returnDateText.style.display = 'block';   
+        }
+    }
+
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', updateSpacing);
+    });
+
+
+    const selectedOption = document.querySelector('input[name="radio-choice"]:checked');
+    if (selectedOption) {
+        updateSpacing.call(selectedOption);
+    }
+});
+

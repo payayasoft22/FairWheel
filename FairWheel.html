@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="FairWheel.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    
     <title>FairWheel</title>
     <link rel="icon" href="window_logo.png" type="image/x-icon" />
 </head>
@@ -26,6 +29,7 @@
             <button class="button-register">Register</button>
         </div>
         <div class="menu-line" id="menu-icon">
+            
         <div class="fas fa-bars" id="menu-icon"></div>
         </div>
     </header>
@@ -43,16 +47,52 @@
                 <input type="radio" name="radio-choice" value="round-trip"> Round Trip
             </label>
         </div>
+
         
         <div class="Location-picker">
             <select>
+                <option disabled selected>From:</option>
                 <option>Manila</option>
                 <option>Batangas</option>
                 <option>Bagiuo</option>
                 <option>Mindoro</option>
             </select>
         </div>
+        <i class="ri-arrow-left-right-line"></i>
+        <div class="location-picker">
+            <select>
+                <option disabled selected>To:</option>
+                <option>Manila</option>
+                <option>Batangas</option>
+                <option>Bagiuo</option>
+                <option>Mindoro</option>
+            </select>
+        </div>
+
+        <i class="ri-calendar-line"></i>
+        <div class="date-picker">
+            <p>Departure Date</p>
+            <input type="date" id="dates">
+            </div>
+
+        <div class="Date-picker">
+            <p>Return Date</p>
+            <input type="date" id="date">
+    
+        </div>
+
+
+
+    <div class="passenger-number">
+        <i class="ri-user-line"></i>
+        <p>No. of Passengers</p>
+    <input type="number" id="passenger-number"  min="1" max="20">
     </div>
+    <div class="Book-button">
+        <button type="submit"value="Book">Book</button>
+    </div>
+        </div>
+
     <footer>
         <div class="footer-container">
           <div class="footer-left">
@@ -71,6 +111,6 @@
             <a href="https://instagram.com" target="_blank">Instagram</a>
           </div>
         </div>
-      </footer>
-      
+      </footer>  
 </body>
+</html>

@@ -420,18 +420,22 @@ body{
     text-align: right;
 
 }
-
 .items {
+    flex-wrap: wrap;
     display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 15px;
     background-color: #a6a8aa;
-    padding: 2vw;
-    margin: 20px auto; 
-    max-width: 90%; 
-    padding-top: 10px;
+    padding: 1vw;
+    margin: 10px auto; 
+    width: 80%; 
+    padding-top: 5px;
 }
+
 .items{
-    margin-top: 100px;
+    margin-top: 20px;
+
 }
 
 .Radios{
@@ -460,13 +464,169 @@ body{
     margin-top: 40px;
     text-align: left;
 }
+.location-picker{
+    display: flex;
+    margin-top: 40px;
+}
+.ri-arrow-left-right-line{
+    display: absolute;
+    margin-top: 45px;
+    font-size: 40px;
+    margin-left: 0;
+    margin-right: 10px;
+    padding: 0;
+}
+.ri-calendar-line{
+    position: relative;
+    display: flex;
+    margin-top: 45px;
+    margin-left: 50px;
+    font-size: 35px;
+}
 
-.Location-picker select {
+.Date-picker p,
+.date-picker p{
+    display: flex;
+    font-weight: 400;
+    font-size: 15px;
+    margin-left: 46px;
+    margin-bottom: 15px;
+    cursor: default;
+}
+
+.date-picker {
+    position: relative;
+    padding: 5px;
+    margin-bottom: 48px;
+}
+
+.Date-picker{
+    position: relative;
+    padding: 5px;
+    margin-bottom: 48px;
+    margin-left: 5vh;
+}
+
+.ri-user-line{
+    position: relative;
+    margin-top: 20px;
+    font-size: 30px;
+    width: 0;
+    margin-left: 80px;
+}
+.passenger-number p{
+    margin-bottom: 80px;
+    font-weight: 400;
+    font-size: 15px;
+    cursor: default;
+}
+.passenger-number{
+    padding: 0;
+    margin-top: 20px;
+    margin-left: 10px;
+    justify-content: flex-start;
+    
+
+}
+.passenger-number {
+    display: flex; 
+    align-items: center; 
+}
+
+.Date-picker input[type="date"],
+.date-picker input[type="date"],
+.passenger-number input[type="number"] {
+    appearance: none;
+    font-size: 15px;
+    padding: 14px;
+    background-color: white;
+    border-radius: 9px;
+    border: 1px solid #000000;
+    width: 170px;
+    box-shadow: 0 4px 8px rgba(0, 91, 187, 0.5);
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+.passenger-number input[type="number"] {
+    text-align: center;
+    padding: 25px 0;
+    width: 50px;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #000000; 
+    border-radius: 8px; 
+    outline: none;
+    margin-top: 10px;
+
+}
+
+.passenger-number input[type="number"]::-webkit-outer-spin-button,
+.passenger-number input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.passenger-number input[type="number"]:focus {
+    border-color: #007bff; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+.passenger-number input[type="number"]:hover {
+    border-color: #007BFF;
+}
+
+
+.Book-button{
+    margin-top: 40px;
+    margin-left: 6vh;
+}
+
+.Book-button button[type="submit"]{
+    font-weight: 600;
+    font-size: 15px;
+    appearance: none;
+    padding: 15px;
+    border: 1px solid #000000;
+    border-radius: 9px;
+    box-shadow: 0 4px 8px rgb(0, 91, 187, 0.5);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+.Book-button button:hover{
+    background-color: #b3b3b3;
+}
+.Date-picker input[type="date"] {
+    position: absolute;
+}
+
+.date-picker input[type="date"] {
+    position: absolute;
+    margin-bottom: 50px;
+
+}
+
+.Date-picker input:hover,
+.date-picker input:hover,
+.passenger-number input:hover {
+    border-color: #007bff;
+    box-shadow: 0 4px 8px rgba(0, 91, 187, 0.5);
+}
+
+.Date-picker input:focus,
+.date-picker input:focus,
+.passenger-number input:focus {
+    outline: none; 
+    border-color: #000000; 
+}
+
+.Location-picker select,
+.location-picker select {
     display: flex;
     appearance: none;
-    margin-left: -20vh;
-    width: 200px;
-    padding: 5px;
+    width: 170px;
+    padding: 15px;
     font-size: 15px; 
     border: 1px solid #000000;
     border-radius: 9px; 
@@ -476,21 +636,32 @@ body{
     transition: border-color 0.3s;
 }
 
-.Location-picker select:hover {
-    border-color: #999;
+.Location-picker select {
+    margin-left: -20vh; 
+}
+
+.location-picker select {
+    margin-left: 3px;
+}
+
+.Location-picker select:hover,
+.location-picker select:hover {
+    border-color: #007bff;
     box-shadow: 0 4px 8px rgba(0, 91, 187, 0.5);
 }
 
-.Location-picker select:focus {
+.Location-picker select:focus,
+.location-picker select:focus {
     outline: none; 
     border-color: #000000; 
 }
 
 footer {
+    position: relative;
     background-color: rgba(217, 217, 217, 0.9);
     color: #333; 
     padding: 20px;
-    margin-top: 100px;
+    top: 16%;
     padding-bottom: 1.9vh;
   }
   
@@ -536,4 +707,70 @@ footer {
     }
   }
   
+
+@media (max-width: 1645px){
+    .Book-button button[type="submit"]{
+        padding: 15px 100px 15px 100px;
+    }
+}
+@media (max-width: 1300px){
+    .ri-arrow-left-right-line{
+        margin-right: 0;
+    }
+    .location-picker select,
+    .Location-picker select{
+        width: 45vh;
+        
+    }
+   .Date-picker input[type="date"],
+    .date-picker input[type="date"]{
+        width: 45vh;
+    }  
+   .date-picker{
+    margin-right: 46px;
+   }
+   .date-picker p,
+   .Date-picker p{
+    margin: 20px 0 5px 150px;
+   }
+   .Date-picker{
+    margin-right: 20px;
+   
+   }
+   .Date-picker,
+    .date-picker{
+        width: 40vh;
+        gap: 10px;
+    }
+   .ri-calendar-line{
+    display: none;
+   }
+}
+@media (max-width: 1460px){
+
+    .passenger-number input[type="number"]{
+    width: 20vh;
+    }
   
+}
+@media (max-width: 1293px){
+
+    .passenger-number input[type="number"]{
+    width: 20vh;
+    }
+    .passenger-number p{
+    margin: 20px 0 5px 60px;
+    }
+    
+}
+@media (max-width: 1480px){
+    
+
+   .passenger-number input[type="number"]{
+    width: 20vh;
+   }
+     .passenger-number p{
+    margin: 20px 0 5px 60px;
+    }    
+       
+}
