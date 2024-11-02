@@ -64,3 +64,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+
+const showLoginFormButton = document.getElementById('LoginButton');
+const loginForm = document.getElementById('loginForm');
+const closeButton = document.querySelector('.close');
+
+showLoginFormButton.addEventListener('click', () => {
+  loginForm.style.display = 'block';
+});
+
+closeButton.addEventListener('click', () => {
+  loginForm.style.display = 'none';
+});
