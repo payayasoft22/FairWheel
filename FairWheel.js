@@ -77,3 +77,46 @@ showLoginFormButton.addEventListener('click', () => {
 closeButton.addEventListener('click', () => {
   loginForm.style.display = 'none';
 });
+
+
+var modal = document.getElementById("myModal");
+
+
+var closeBtn = document.querySelector(".close");
+
+
+closeBtn.onclick = function() {
+    modal.style.display = "none";
+};
+
+
+
+const menuIcon = document.getElementById('menu-icon');
+const menu = document.querySelector('.navlist'); 
+
+menuIcon.addEventListener('click', () => {
+  menu.classList.toggle('active');
+});
+
+function openLoginModal() {
+    const modal = document.getElementById('loginForm');
+    modal.style.display = 'flex'; 
+    document.body.classList.add('modal-open');
+}
+
+function closeLoginModal() {
+    const modal = document.getElementById('loginForm');
+    modal.style.display = 'none'; 
+    document.body.classList.remove('modal-open');
+}
+
+
+document.querySelector('.close').addEventListener('click', closeLoginModal);
+
+
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('loginForm');
+    if (event.target === modal) {
+        closeLoginModal();
+    }
+});
