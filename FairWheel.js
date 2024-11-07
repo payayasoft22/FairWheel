@@ -98,25 +98,44 @@ menuIcon.addEventListener('click', () => {
   menu.classList.toggle('active');
 });
 
-function openLoginModal() {
+
+//for login and if logged in already
+function isLoggedIn() {
+
+
+    return false; 
+  }
+  
+
+  function openLoginModal() {
     const modal = document.getElementById('loginForm');
-    modal.style.display = 'flex'; 
+    modal.style.display = 'block';
     document.body.classList.add('modal-open');
-}
+  }
+  
 
-function closeLoginModal() {
+  function closeLoginModal() {
     const modal = document.getElementById('loginForm');
-    modal.style.display = 'none'; 
+    modal.style.display = 'none';
     document.body.classList.remove('modal-open');
-}
-
-
-document.querySelector('.close').addEventListener('click', closeLoginModal);
-
-
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('loginForm');
-    if (event.target === modal) {
-        closeLoginModal();
+  }
+  
+  document.getElementById('bookButton').addEventListener('click', () => {
+    if (isLoggedIn()) {
+      // Redirect to the booking page or process the booking directly
+      window.location.href = 'booking.html'; // Or trigger booking process
+    } else {
+      openLoginModal();
     }
-});
+  });
+  
+
+  document.getElementById('loginButton').addEventListener('click', () => {
+    openLoginModal();
+  });
+  
+
+  document.getElementById('closeModal').addEventListener('click', () => {
+    closeLoginModal();
+  });
+
