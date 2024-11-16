@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="Contact-us.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="FairWheel.html">
+      <i class="ri-arrow-left-line"></i>
+      </a>
+    <div class="left-side">
+      <h2 id="message">Need Help?</h2>
+      <p>Contact us for any questions or concerns.</p>
+    </div>
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <form>
+          <label for="name">Name:</label>
+          <input type="text" id="name" placeholder="Name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="Email" required>
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" placeholder="Phone Number" required>
+          <label for="messageInput">Message:</label>
+          <textarea id="messageInput" placeholder="What do you have in mind?"></textarea>
+          <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  const dynamicTextElement = document.getElementById('message');
+const messages = ['Welcome!', 'How can we assist you?', 'We’re here 24/7.', 'Contact us anytime!', 'Need Help?'];
+let index = 0;
+function updateText() {
+  dynamicTextElement.classList.add('slide-out');
+
+  setTimeout(() => {
+  
+    dynamicTextElement.textContent = messages[index];
+    index = (index + 1) % messages.length;
+
+    dynamicTextElement.classList.remove('slide-out');
+    dynamicTextElement.classList.add('slide-in');
+
+    setTimeout(() => dynamicTextElement.classList.remove('slide-in'), 500);
+  }, 500); 
+}
+setInterval(updateText, 2500);
+
+  </script>
+</body>
+</html>

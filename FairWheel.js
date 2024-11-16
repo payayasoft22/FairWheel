@@ -139,3 +139,22 @@ function isLoggedIn() {
     closeLoginModal();
   });
 
+  
+  function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password');
+    const toggleIcon = document.getElementById('togglePassword');
+
+    const isPassword = passwordInput.getAttribute('type') === 'password';
+
+
+    passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+
+   
+    if (isPassword) {
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+    } else {
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+    }
+}

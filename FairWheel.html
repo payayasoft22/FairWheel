@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="FairWheel.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-
     
     <title>FairWheel</title>
     <link rel="icon" href="window_logo.png" type="image/x-icon" />
@@ -17,58 +16,66 @@
 <body>
     <header>
         <img src="header logo.png" alt="header-pic" class="head-pic">
-
         <ul class="navlist">
             <li><a href="#">My Ticket</a></li>
             <li><a href="#">Destinations</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="Contact-us.html">Contact Us</a></li>
         </ul>
 
         <div class="Sign-in">
             <button class="button-sign" id="LoginButton">Sign in</button>
             <button class="button-register" onclick="window.location.href='RegistrationFairWheel.html';">Register</button>
-
-
-    </div>
         </div>
 
         <div id="loginForm" class="modal">
             <div class="modal-content">
-              <div class="close">
-                <i class="ri-close-fill"></i>
-              </div>
-              <div class="logo">
-                <h2>Welcome Back!</h2>
-              </div>
-              <form>
-                <input type="text" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <div class="remember-forgot">
-                  <label>
-                    <input type="checkbox">Remember me?
-                  </label>
-                  <a href="#">Forgot Password?</a>
+                <div class="close">
+                    <i class="ri-close-fill"></i>
                 </div>
-                <button type="submit">Login</button>
-                <p>Or Continue With:</p>
-                <div class="social-login">
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-google"></i></a>
+                <div class="logo">
+                    <h2>Welcome Back!</h2>
                 </div>
-                <p>Don't Have Account? <a href="RegistrationFairWheel.html">Sign Up</a></p>
-              </form>
+                <form>
+                    <input type="text" placeholder="Email" required>
+                    <div class="password-container">
+                      <input type="password" id="password" placeholder="Password" required>
+                    <i class="fa fa-eye-slash" id="togglePassword" onclick="togglePasswordVisibility()"></i>
+                    </div>
+                    <div class="remember-forgot">
+                        <label>
+                            <input type="checkbox">Remember me?
+                        </label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit">Login</button>
+                    <p>Or Continue With:</p>
+                    <div class="social-login">
+                        <a href="https://www.facebook.com/v12.0/dialog/oauth?
+                        client_id=YOUR_APP_ID&
+                        redirect_uri=YOUR_REDIRECT_URI&
+                        state=YOUR_UNIQUE_STATE_PARAM&
+                        scope=email,public_profile"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://accounts.google.com/o/oauth2/v2/auth?
+                        client_id=YOUR_CLIENT_ID&
+                        redirect_uri=YOUR_REDIRECT_URI&
+                        response_type=code&
+                        scope=openid%20email%20profile&
+                        access_type=online"><i class="fab fa-google"></i></a>
+                    </div>
+                    <p>Don't Have Account? <a href="RegistrationFairWheel.html">Sign Up</a></p>
+                </form>
             </div>
-          </div>
+        </div>
 
         <div class="menu-line" id="menu-icon">
-            
-        <div class="fas fa-bars" id="menu-icon"></div>
+            <div class="fas fa-bars" id="menu-icon"></div>
         </div>
     </header>
 
     <div class="inside-text">
-    <p>Reserve, Relax, Repeat.</p>
+        <p>Reserve, Relax, Repeat.</p>
     </div>
+
     <div class="items">
         <div class="Radios">
             <label class="custom-radio">
@@ -79,24 +86,25 @@
             </label>
         </div>
 
-        
         <div class="Location-picker">
             <select>
                 <option disabled selected>From:</option>
                 <option>Manila</option>
                 <option>Batangas</option>
-                <option>Bagiuo</option>
+                <option>Baguio</option>
                 <option>Mindoro</option>
             </select>
         </div>
+
         <i class="ri-arrow-left-right-line"></i>
         <i class="ri-arrow-up-down-line"></i>
+
         <div class="location-picker">
             <select>
                 <option disabled selected>To:</option>
                 <option>Manila</option>
                 <option>Batangas</option>
-                <option>Bagiuo</option>
+                <option>Baguio</option>
                 <option>Mindoro</option>
             </select>
         </div>
@@ -104,46 +112,42 @@
         <i class="ri-calendar-line"></i>
         <div class="date-picker">
             <p>Departure Date</p>
-            <input type="date" id="dates">
-            </div>
+            <input type="date" id="dates" onclick="this.showPicker()">
+        </div>
 
         <div class="Date-picker">
             <p>Return Date</p>
-            <input type="date" id="date">
-    
+            <input type="date" id="date" onclick="this.showPicker()">
         </div>
 
-
-
-    <div class="passenger-number">
-        <i class="ri-user-line"></i>
-        <p>No. of Passengers</p>
-    <input type="number" id="passenger-number"  min="1" max="20">
-    </div>
-    <div class="Book-button">
-        <button type="submit"value="Book" onclick="openLoginModal()">Book</button>
-    </div>
+        <div class="passenger-number">
+            <i class="ri-user-line"></i>
+            <p>No. of Passengers</p>
+            <input type="number" id="passenger-number" min="1" max="20">
         </div>
+
+        <div class="Book-button">
+            <button type="submit" value="Book" onclick="openLoginModal()">Book</button>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-container">
-          <div class="footer-left">
-            <p>&copy; 2024 FairWheel. All rights reserved.</p>
-          </div>
-      
-          <div class="footer-middle">
-            <p>Contact Us:</p>
-            <p>Email: info@fairwheel.com | Phone: +123 456 7890</p>
-          </div>
-      
-          <div class="footer-right">
-            <p>Follow Us:</p>
-            <a href="https://facebook.com" target="_blank">Facebook</a> |
-            <a href="https://twitter.com" target="_blank">Twitter</a> |
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-          </div>
+            <div class="footer-left">
+                <p>&copy; 2024 FairWheel. All rights reserved.</p>
+            </div>
+            <div class="footer-middle">
+                <p>Contact Us:</p>
+                <p>Email: info@fairwheel.com | Phone: +123 456 7890</p>
+            </div>
+            <div class="footer-right">
+                <p>Follow Us:</p>
+                <a href="https://facebook.com" target="_blank">Facebook</a> |
+                <a href="https://twitter.com" target="_blank">Twitter</a> |
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
         </div>
         <script src="FairWheel.js"></script>
-      </footer>  
+    </footer>
 </body>
 </html>
