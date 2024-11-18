@@ -65,6 +65,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+const dateInputs = document.querySelectorAll('#dates, #date');
+
+
+function setMinDate() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+
+  const minDate = `${yyyy}-${mm}-${dd}`;
+
+  dateInputs.forEach((input) => input.setAttribute('min', minDate));
+}
+
+setMinDate();
+
+
 
 const showLoginFormButton = document.getElementById('LoginButton');
 const loginForm = document.getElementById('loginForm');
@@ -110,14 +127,12 @@ function isLoggedIn() {
 function openLoginModal() {
   const modal = document.getElementById('loginForm');
   modal.style.display = 'block';
-  document.body.classList.add('modal-open');
 }
 
 
 function closeLoginModal() {
   const modal = document.getElementById('loginForm');
   modal.style.display = 'none';
-  document.body.classList.remove('modal-open');
 }
 
 document.getElementById('bookButton').addEventListener('click', () => {

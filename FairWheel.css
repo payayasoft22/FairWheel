@@ -4,7 +4,8 @@
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
-    font-family: "Inria Serif", sans-serif;
+    font-family: "Public Sans", sans-serif;
+    font-optical-sizing: auto;
 }
 header{
     background-color: rgb(217, 217, 217, 0.90);
@@ -668,7 +669,7 @@ footer {
     padding: 20px 0;
     width: 100%;
     text-align: center;
-    margin-top: 14.5vh; 
+    margin-top: 15.5vh; 
 }
 
 .footer-container {
@@ -699,7 +700,16 @@ footer {
     text-decoration: underline;
 }
 
-/* Media Query for small screens */
+
+@media (max-width: 1670px) {
+    footer{
+    padding: 20px 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 17.3vh; 
+}
+}
+
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
@@ -719,7 +729,7 @@ footer {
     }
 }
 
-/* Media Query for extra small screens (e.g., mobile phones) */
+
 @media (max-width: 480px) {
     .footer-left,
     .footer-middle,

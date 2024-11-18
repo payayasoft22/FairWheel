@@ -8,7 +8,7 @@
 
 
 body {
-    background-color: #E8C1A0;
+    height: 100vh;
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
@@ -25,6 +25,7 @@ body {
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 20%);
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 20%);
     background-color: transparent;
+    
 }
 
 
@@ -153,6 +154,7 @@ h2 {
     color: green; 
 }
 
+
 @media (max-width: 1024px) {
     .registration-form {
         width: 50%;
@@ -208,6 +210,6 @@ h2 {
     }
 
     .Left-Photo {
-        display: none; 
+        height: 150px;
     }
 }

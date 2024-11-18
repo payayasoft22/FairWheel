@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background-image: url(RoutesBG.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.route-table {
+    border-radius: 15px;
+    width: 90%;
+    height: auto;
+    max-width: 1200px;
+    margin: 100px auto;
+    border-collapse: collapse;
+    background-color: #f2f2f2;
+    overflow-x: auto;
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.3);
+}
+
+.route-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    font-size: 25px;
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+.ri-arrow-left-line {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 40px;
+    color: #000000;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+
+
+.ri-arrow-left-line:hover {
+    color: #ff0202;
+}
+
+.Book-Ticket button {
+    background-color: #1bd899; 
+    color: white;
+    padding: 10px 30px; 
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px; 
+    font-weight: bold;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.Book-Ticket button:hover {
+    background-color: #17a072; 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+    transform: scale(1.05);
+}
+
+.Book-Ticket {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.Book-Ticket a{
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .route-table {
+        margin: 50px auto;
+    }
+
+    table th, table td {
+        font-size: 16px; 
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .route-table {
+        width: 100%; 
+    }
+
+    table th, table td {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
