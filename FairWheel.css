@@ -29,223 +29,28 @@ header{
         margin-left: 10px;
     }
 }
+
 .navlist{
-    margin-top: 30px;
-    margin-left: 80vh;
+   margin-top: 30px;
+    margin-right: 10px;
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    gap: 10px;
 }
 .navlist a{
     color: black;
-    margin-left: 100px;
+    margin-left: 20px;
     font-size: 15px;
     font-weight: 600;
     border-bottom: 2px solid transparent;
-    justify-content: space-between;
+    margin-right: 50px;
 
 }
 .navlist a:hover{
     border-bottom: 2px solid black;
     transition: all .55s ease;
 }
-@media (max-width: 1770px) {
-    .navlist {
-        margin-left: 75vh; 
-        height: 100%;
-    }
 
-    .navlist a {
-        margin-left: 40px; 
-    }
-}
-
-@media (max-width: 1669px) {
-    .navlist {
-        margin-left: 70vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px; 
-    }
-}
-
-@media (max-width: 1620px) {
-    .navlist {
-        margin-left: 65vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px; 
-    }
-}
-
-@media (max-width: 1580px) {
-    .navlist {
-        margin-left: 60vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px; 
-    }
-}
-
-@media (max-width: 1550px) {
-    .navlist {
-        margin-left: 55vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-
-@media (max-width: 1520px) {
-    .navlist {
-        margin-left: 50vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 1420px) {
-    .navlist {
-        margin-left: 45vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 1340px) {
-    .navlist {
-        margin-left: 40vh; 
-        height: 100%;
-
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 1280px) {
-    .navlist {
-        margin-left: 35vh;
-        height: 100%; 
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 1285px) {
-    .navlist {
-        margin-left: 30vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 1180px) {
-    .navlist {
-        margin-left: 25vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 1155px) {
-    .navlist {
-        margin-left: 20vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 1100px) {
-    .navlist {
-        margin-left: 15vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 1088px) {
-    .navlist {
-        margin-left: 10vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 980px) {
-    .navlist {
-        margin-left: 5vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 950px) {
-    .navlist {
-        margin-left: 3vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 910px) {
-    .navlist {
-        margin-left: 2vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 895px) {
-    .navlist {
-        margin-left: -1vh;
-        height: 100%; 
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 865px) {
-    .navlist {
-        margin-left: -3vh; 
-        height: 100%;
-    }
-
-    .navlist a {
-        margin-left: 40px;
-    }
-}
 
 body{
     background-image: url(bg1.webp);
@@ -256,163 +61,145 @@ body{
     margin: 0;       
 
 }
-
   
-#menu-icon{
+
+#menu-icon {
     color: black;
     margin-top: 30px;
     font-size: 35px;
     z-index: 10001;
     cursor: pointer;
-    display: none;
-}
-.Sign-in {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    padding-bottom: 8px;
-    margin-right: 1px;
+    display: none; 
 }
 
-.Sign-in button {
-    border: none; 
-    font-size: 15px;
-    padding: 5px 10px;
-    margin: 20px;
+.navlist {
+    list-style: none;
     display: flex;
-    align-items: center;
-    white-space: nowrap; 
+    justify-content: flex-end; 
+}
+
+.button-sign {
+    font-weight: 600;
+    margin-right: 10px;
+    margin-top: -7px;
     background-color: transparent;
-    color: black; 
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, border-radius 0.3s;
+    color: rgb(0, 0, 0); 
+    border: none; 
+    padding: 7px ;
+    text-align: center; 
+    text-decoration: none; 
+    font-size: 16px; 
+    cursor: pointer; 
+    border-radius: 5px;
+    transition: background-color 0.3s ease; 
 }
 
-
-.Sign-in button:hover {
-    color:  rgb(0, 0, 0);
+.button-sign:hover {
     background-color: #a6a6a6;
-    border-radius: 30px; 
-    padding: 5px 10px;
+    border-radius: 15px;
+    padding: 7px; 
 }
-@media (max-width: 848px) {
+
+
+.button-register {
+    font-weight: 600;
+    background-color: transparent;
+    color: rgb(0, 0, 0);  
+    border: none; 
+    padding: 7px; 
+    margin-top: -7px;
+    text-align: center; 
+    text-decoration: none;
+    font-size: 16px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    transition: background-color 0.3s ease; 
+}
+
+.button-register:hover {
+    background-color: #a6a6a6;
+    border-radius: 15px;
+    padding: 7px; 
+}
+
+@media (max-width: 803px) {
     #menu-icon {
         display: block;
-        margin-top: 15px;
         font-size: 30px;
-        margin-right: 5px;
+        margin-top: 15px;
+        margin-right: 10px;
     }
+
     
-    .Sign-in{
-        position: absolute;
-        top: 12%;
-        right: 0;
-        border: 0;
-        border-radius: 15px;
-        width: 250px;
-        height: 40vh;
-        display: flex;
-        align-items: center;
+    .navlist {
+        margin-left: 40px;
+        gap: 30px;
         text-align: center;
-        flex-direction: column;
-        padding-bottom: 0;
-        margin: 15px;
+        justify-content: flex-start;
+        display: none; 
+        flex-direction: column; 
+        position: absolute;
+        top: 0;
+        right: 0;
+            backdrop-filter: blur(15px); 
+            background-color: rgba(217, 217, 217, 0.5); 
+        
+        width: 250px;
+        margin-top: 15vh;
+        z-index: 100;
+        padding-top: 20px;
+        border-radius: 10px;
     }
-    .navlist a{
-        display: block;
-        margin: 15px 0;
+
+    .navlist a {
+        text-align: center;
+        margin-bottom: 20px;
+
+    }
+
+  
+    #menu-icon.bx-x + .navlist {
+        display: flex;
+    }
+
+
+    .navlist li button {
         margin-left: 0;
-        }
-    
-    .Sign-in{
-        top: 30%;
-        background-color: transparent;
-        padding: 0;
-        margin: 10;
-        display: flex;
-
-}
-}
-@media (max-width: 848px) {
-    #menu-icon {
-        display: block;
-        margin-top: 15px;
-        font-size: 30px;
-        margin-right: 5px;
-    }
-    
-    .navlist{
-        background-color: rgb(217, 217, 217, 0.5);
-        position: absolute;
-        top: 12%;
-        backdrop-filter: blur(15px);
-        right: 0;
-        border: 0;
-        border-radius: 15px;
-        width: 250px;
-        height: 40vh;
-        display: flex;
-        align-items: center;
+        margin-right: 30px;
         text-align: center;
-        flex-direction: column;
-        padding-bottom: 0;
-        margin: 15px;
+        font-size: 18px; 
+        gap: 30px;
+        margin-bottom: 20px;
     }
-        .navlist a{
-            display: block;
-            margin: 15px 0;
-            margin-left: 0;
-        }
-    
-    .Sign-in{
-        top: 30%;
-        background-color: transparent;
-        padding: 0;
-        margin: 10;
-        display: flex;
 
-}
+    .navlist li button:hover {
+        background-color: #a6a6a6;
+    }
+
+    .Sign-in {
+        display: none; 
+        gap: 30px;
+        text-align: center;
+    }
 }
 
 @media (max-width: 550px) {
-    #menu-icon{
-        display: block;
-        margin-top: 10px;
+    #menu-icon {
         font-size: 25px;
+        margin-top: 10px;
     }
-    .navlist{
-        background-color: rgb(217, 217, 217, 0.5);
-        position: absolute;
-        top: 8%;
-        backdrop-filter: blur(15px);
-        right: 0;
-        border: 0;
-        border-radius: 15px;
-        width: 250px;
-        height: 45vh;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        flex-direction: column;
-        padding-bottom: 0;
-        margin: 15px;
-    }
-        .navlist a{
-            display: block;
-            margin: 15px 0;
-            margin-left: 0;
-        }
-    
-    .Sign-in{
-        top: 34%;
-        background-color: transparent;
-        padding: 0;
-        margin: 10;
-        display: flex;
 
+    .navlist {
+        top: 0;
+        padding-top: 50px; /* Adjust for smaller screens */
+    }
+
+    .navlist li button {
+        font-size: 16px; /* Slightly smaller button text */
+        padding: 8px 12px;
+    }
 }
-}
+
 .inside-text {
     font-weight: 400;
     font-size: 5vw;
@@ -1071,44 +858,28 @@ footer {
 }
 
 
-.modal {
-    display: none;
+
+.modalss {
     position: fixed;
-    z-index: 1000;
+    top: 0;
     left: 0;
-    top: 50%; 
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
-    overflow: auto;
-  }
-.modal-content {
-    top: 20%;
-    position: relative; 
+}
+
+.modal-contents {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     width: 80%;
-    max-width: 500px; 
-    margin: auto;  
+    max-width: 600px;
+    position: relative;
 }
 
-
-.modal.show {
-    display: block;
-}
-
-
-body.modal-open {
-    overflow: hidden; 
-}
-
-
-.close {
+.closes {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -1116,256 +887,35 @@ body.modal-open {
     font-size: 24px;
 }
 
-.close i {
-    font-size: 40px;
-    color: #000;
-}
-
-.close i:hover {
-    color: #ff0000;
-}
-
-
-.logo h2 {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
+.tabs {
+    display: flex;
+    justify-content: space-around;
     margin-bottom: 20px;
 }
 
-
-form {
-    text-align: center;
-}
-
-form input {
-    width: 100%;
+.tab-button {
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.remember-forgot {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .remember-forgot input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background-color: #fff;
-  }
-  
-  .remember-forgot label {
-    display: inline-block;
-    margin-left: 5px;
-  }
-  
-
-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    cursor: pointer;
+    background: #ddd;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 }
 
-.social-login {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
+.tab-button:hover {
+    background: #ccc;
 }
 
-.social-login a {
-    margin: 0 10px;
-    font-size: 20px;
-    color: #333;
+.tab-content {
+    display: none;
 }
 
-.social-login a:hover {
-    color: #4CAF50;
+.tab-content.active {
+    display: block;
 }
 
 
-form p {
-    text-align: center;
-    font-size: 14px;
-    margin-bottom: 10px;
+.error-message {
+    color: red;
+    display: none; /* Hidden by default */
+    margin-bottom: 5px; /* Space between error message and input */
 }
-
-form a {
-    margin-bottom: 8px;
-    color: #000000;
-    text-decoration: underline;
-}
-
-
-#loginForm {
-    display: none; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-#loginForm .modal-content {
-    background: #fff;
-    padding: 20px;
-    max-width: 400px;
-    width: 90%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#loginForm .close {
-    text-align: right;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-#loginForm .logo h2 {
-    text-align: center;
-    font-size: 1.8rem;
-}
-
-#loginForm form {
-    display: flex;
-    flex-direction: column;
-}
-
-#loginForm input[type="text"],
-#loginForm input[type="password"] {
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-#loginForm .remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    margin: 10px 0;
-}
-
-#loginForm .social-login a {
-    font-size: 1.5rem;
-    margin: 0 10px;
-}
-
-#loginForm button {
-    margin-bottom: 15px;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 1rem;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#loginForm button:hover {
-    background-color: #45a049;
-}
-
-
-@media (max-width: 768px) {
-    #loginForm .modal-content {
-        width: 90%;
-        padding: 15px;
-    }
-
-    #loginForm .logo h2 {
-        font-size: 1.5rem;
-    }
-
-    #loginForm input[type="text"],
-    #loginForm input[type="password"] {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-
-    #loginForm button {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    #loginForm .modal-content {
-        width: 95%;
-        padding: 10px;
-    }
-
-    #loginForm .logo h2 {
-        font-size: 1.3rem;
-    }
-
-    #loginForm .remember-forgot {
-        font-size: 0.8rem;
-    }
-
-    #loginForm .social-login a {
-        font-size: 1.2rem;
-        margin: 0 5px;
-    }
-
-    #loginForm input[type="text"],
-    #loginForm input[type="password"] {
-        font-size: 0.8rem;
-        padding: 7px;
-    }
-
-    #loginForm button {
-        font-size: 0.8rem;
-        padding: 7px;
-    }
-}
-
-.password-container {
-    position: relative;
-    width: 100%;
-  }
-  
-  #password {
-    width: 100%;
-    padding-right: 40px;
-  }
-  
-  #togglePassword {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  
-  @media (max-width: 768px) {
-    #togglePassword {
-      right: 15px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    #togglePassword {
-      right: 15px;
-    }
-  }
-
-  

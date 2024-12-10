@@ -1,3 +1,65 @@
+<?php
+function function_alert($message) {
+
+    echo "<script>alert('$message'); window.location.href = 'FairWheel.html';</script>";  // Redirect to new page after alert
+}
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $phone = filter_var(trim($_POST['phone']), FILTER_SANITIZE_STRING);
+    $message = filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING);
+
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Invalid email format.");
+    }
+
+
+    if (!preg_match('/^[0-9]{10,15}$/', $phone)) {
+        die("Invalid phone number format. Use only digits, 10-15 characters long.");
+    }
+
+
+    $servername = "localhost"; 
+    $username = "root";        
+    $password = "";           
+    $dbname = "fairwheel_db"; 
+
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+
+    $stmt = $conn->prepare("INSERT INTO concerns (name, email, phone, message) VALUES (?, ?, ?, ?)");
+    if ($stmt === false) {
+        die("Error preparing the SQL statement: " . $conn->error);
+    }
+
+    $stmt->bind_param("ssss", $name, $email, $phone, $message);
+
+
+    if ($stmt->execute()) {
+        function_alert("Thank you for your message! We will get back to you soon.");
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+   
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +74,7 @@
 
 <body>
     <div class="container">
-        <a href="FairWheel.html">
+        <a href="FairWheel.php">
             <i class="ri-arrow-left-line"></i>
         </a>
         <div class="left-side">

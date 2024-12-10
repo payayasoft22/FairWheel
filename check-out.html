@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      width: 100%; /* Full width */
+      max-width: 90%; /* Optional max-width for responsiveness */
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      
+    }
+
+    h2 {
+      text-align: left; /* Aligned to the left */
+      margin-bottom: 10px; /* Reduced margin */
+      font-size: 20px;
+      font-weight: 750;
+    }
+
+    .info-section {
+      margin-bottom: 20px;
+      padding: 0px 30px; /* Reduced margin */
+    }
+
+    .info-section p {
+      margin-bottom: 5px; /* Reduced margin */
+      font-size: 14px; /* Smaller font size */
+    }
+
+    .info-section strong {
+      display: inline-block;
+      width: 120px; /* Adjusted width */
+      font-weight: normal; /* Normal font weight */
+    }
+
+    .payment-info p {
+    padding: 0px 30px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 14px; /* Smaller font size */
+    }
+
+    .payment-info .total {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px; /* Added margin */
+    }
+
+    button {
+  background-color: #94DE98;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 50px; /* Increased padding */
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%; /* Make buttons full width on smaller screens */
+  max-width: 300px; /* Limit button width on larger screens */
+  box-sizing: border-box; /* Include padding and border in width */
+
+}
+
+    button:hover {
+      background-color: #6EBB71;
+    }
+    .info-section {
+      border: 3px solid #ddd; /* Add border to the bottom */
+      padding-bottom: 15px; /* Add padding to the bottom */
+      border-radius: 15px;
+    }
+    .payment-info button [name="cancel"]{
+      background-color: white;
+
+    }
+
+    .payment-info {
+        
+      border: 3px solid #ddd; /* Add border to the bottom */
+      padding-bottom: 15px;
+      border-radius: 15px;
+      flex-direction: column;  /* Stack buttons vertically */
+  align-items: center;    /* Center buttons horizontally */
+  gap: 10px;             /* Add some space between buttons */ 
+      
+    }
+    .payment-info p[name="ins"] { 
+        border-bottom: 2px solid #ddd; 
+      /* Add margin to the bottom of the insurance line */
+}
+button[name="cancel"] {
+  background-color: white; 
+  border: 2px solid #ddd;
+  transition: background-color 0.5s ease;
+}
+button:hover {
+  background-color: #6EBB71;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>DEPARTING INFORMATION</h2>
+    <div class="info-section">
+      <p><strong>Departure Date:</strong> <span id="departure-date"></span></p>
+      <p><strong>Depart from:</strong> <span id="depart-from"></span></p>
+      <p><strong>Arrive at:</strong> <span id="arrive-at"></span></p>
+      <p><strong>Bus Operator:</strong> <span id="bus-operator"></span></p>
+      <p><strong>Seat Number/s:</strong> <span id="seat-numbers"></span></p>
+      <p><strong>Ticket Unit Price:</strong> <span id="ticket-price"></span></p>
+    </div>
+
+    <h2>PAYMENT INFORMATION</h2>
+    <div class="payment-info">
+      <p>Depart Journey Fare <span id="depart-fare">0.00</span></p>
+      <p>Return Journey Fare <span id="return-fare">0.00</span></p>
+      <p>Ticket Surcharge <span id="ticket-surcharge">0.00</span></p>
+      <p>Discount <span id="discount">-0.00</span></p>
+      <p name="ins">Insurance Protection <span id="insurance">0.00</span></p>
+      <p class="total">TOTAL <span id="total-price">0.00</span></p>
+    </div>
+
+    <button onclick="payNow()">Pay Now</button>
+    <button name="cancel" onclick="cancel()">Cancel</button>
+  </div>
+
+  <script>
+    // Get ticket data from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const ticketData = urlParams.get('ticket');
+
+    if (ticketData) {
+      try {
+        const ticket = JSON.parse(decodeURIComponent(ticketData));
+
+        // Populate the page with ticket information
+        document.getElementById('departure-date').textContent = ticket.departure_date;
+        document.getElementById('depart-from').textContent = ticket.from_location;
+        document.getElementById('arrive-at').textContent = ticket.to_location;
+        document.getElementById('bus-operator').textContent = ticket.bus_operator;
+        document.getElementById('seat-numbers').textContent = ticket.selected_seat?.join(', ') || "No seat selected";
+
+
+        // Function to calculate and display payment information
+        function calculateAndDisplayPaymentInfo(ticket) {
+          // Price list for all routes (one-way)
+          const priceList = {
+            "Manila": {
+              "Baguio": 900,
+              "Batangas": 400,
+              "Mindoro": 1200,
+              "Bicol": 1500
+            },
+            "Baguio": {
+              "Manila": 850,
+              "Batangas": 700, 
+              "Mindoro": 1100, 
+              "Bicol": 1400  
+            },
+            "Batangas": {
+              "Manila": 350,
+              "Baguio": 650, 
+              "Mindoro": 1050, 
+              "Bicol": 1350
+            },
+            "Mindoro": {
+              "Manila": 1150,
+              "Baguio": 1000, 
+              "Batangas": 950, 
+              "Bicol": 1300
+            },
+            "Bicol": {
+              "Manila": 1300,
+              "Baguio": 1250,
+              "Batangas": 1200,
+              "Mindoro": 1150
+            }
+          };
+
+          // Get the one-way fare from the priceList
+          let departFare = priceList[ticket.from_location][ticket.to_location] || 0;
+
+          // Calculate return fare if trip type is "Round trip" AND return_date has a value
+          let returnFare = 0;
+          if (ticket.trip_type === "round-trip" && ticket.return_date && ticket.return_date !== '0000-00-00') {
+            returnFare = priceList[ticket.to_location][ticket.from_location] || 0;
+          }
+
+          // Example surcharge, discount, and insurance calculations (replace with your actual logic)
+          let ticketSurcharge = 99; 
+          let discount = 0;
+          let insurance = 150;
+
+          // Display the calculated fares
+          document.getElementById('depart-fare').textContent = departFare.toFixed(2);
+          document.getElementById('return-fare').textContent = returnFare.toFixed(2);
+          document.getElementById('ticket-surcharge').textContent = ticketSurcharge.toFixed(2);
+          document.getElementById('discount').textContent = '-' + discount.toFixed(2);
+          document.getElementById('insurance').textContent = insurance.toFixed(2);
+
+          // Calculate and display the total price
+          const totalPrice = departFare + returnFare + ticketSurcharge - discount + insurance;
+          document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+
+          // Set the ticket unit price
+          document.getElementById('ticket-price').textContent = 'Php ' + departFare.toFixed(2);
+        }
+
+        // Calculate and display payment information
+        calculateAndDisplayPaymentInfo(ticket);
+
+      } catch (error) {
+        console.error("Error parsing ticket data:", error);
+      }
+    } else {
+      console.error("Ticket data not found in URL parameters.");
+    }
+
+    function payNow() {
+      // Implement your payment logic here
+      alert("Payment processing...");
+    }
+
+    function cancel() {
+      // Implement your cancel logic here
+      window.location.href = 'Tickets.html'; // Redirect back to the tickets page
+    }
+  </script>
+</body>
+</html>

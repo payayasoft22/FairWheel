@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Login Form Container Styling */
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: rgb(46,139,87);
+      background: linear-gradient(159deg, rgba(46,139,87,1) 0%, rgba(64,224,208,1) 100%);
+      margin: 0;
+      box-sizing: border-box;
+      padding: 0;
+    }
+
+    .login-container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px; 
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+
+    /* Logo Styling */
+    .logo h2 {
+      padding-top: 0;
+      margin-bottom: 20px;
+      font-size: 35px;
+      color: #000000;
+    }
+
+    /* Input Fields Styling */
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    /* Password Container Styling */
+    .password-container {
+      position: relative;
+      width: 100%;
+    }
+
+    /* Password Toggle Icon Styling */
+    .fa-eye-slash {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    /* Remember Me and Forgot Password Styling */
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .remember-forgot label {
+      font-size: 15px;
+    }
+
+    .remember-forgot a {
+      font-size: 15px;
+      color: #000000; /* Black color for "Forgot Password?" */
+      text-decoration: underline; 
+    }
+
+    /* Submit Button Styling */
+    .login-container button[type="submit"] {
+      background-color: #50C878;
+      color: rgb(0, 0, 0);
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    .login-container button[type="submit"]:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+
+    /* Social Login Styling */
+    .social-login {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .social-login a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #333;
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 20px;
+      transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    .social-login a:hover {
+      background-color: #eee; /* Light gray background on hover */
+    }
+
+    .social-login i {
+      font-size: 25px;
+    }
+
+    .social-login i:hover{
+      color: #333;
+    }
+
+    /* Text and Link Styling */
+    .login-container p {
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .login-container a {
+      color: #50C878;
+      text-decoration: none;
+      transition: color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    .login-container a:hover {
+      color: #45a049; /* Darker green on hover */
+    }
+
+    /* Back Button Styling */
+    .login-container button {
+      margin-top: 10px;
+      background-color: #eee;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    .login-container button:hover {
+      background-color: #ddd; /* Slightly darker gray on hover */
+    }
+
+    /* Password Input Field with Space for Icon */
+    #password {
+      width: 100%;
+      padding-right: 40px;
+    }
+
+    /* Password Toggle Icon Positioning */
+    #togglePassword {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    /* Media Query for Smaller Screens */
+    @media (max-width: 768px) {
+      .login-container {
+        padding: 20px;
+        width: 90%;
+      }
+
+      input[type="text"], 
+      input[type="password"], 
+      button[type="submit"] {
+        font-size: 14px;
+      }
+
+      .social-login a {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+      }
+
+      .remember-forgot {
+
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+      .remember-forgot label, .remember-forgot a {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 15px;
+      }
+
+      .login-container button {
+        font-size: 14px;
+      }
+
+      .social-login a {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+      }
+
+      input[type="text"], 
+      input[type="password"], 
+      button[type="submit"] {
+        padding: 8px;
+      }
+
+      .remember-forgot {
+        flex-direction: column;
+      }
+
+      .remember-forgot label, .remember-forgot a {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="login-container"> 
+      <div class="logo">
+        <h2>Welcome Back!</h2>
+      </div>
+      <form id="loginForm" method="POST" action="FairWheel.php"> 
+        <input type="text" id="email" name="email" placeholder="Email" required> 
+        <div class="password-container">
+          <input type="password" name="password" id="password" placeholder="Password" required>
+          <i class="fa fa-eye-slash" id="togglePassword" onclick="togglePasswordVisibility()"></i>
+        </div>
+        <div class="remember-forgot">
+          <label>
+            <input type="checkbox" id="rememberMeCheckbox"> Remember me?
+          </label>
+          <a href="#" id="forgot-password-trigger">Forgot Password?</a> 
+        </div>
+        <button type="submit">Login</button>
+        <p>Or Continue With:</p>
+        <div class="social-login">
+          <a href="#"><i class="fab fa-facebook-f"></i></a> 
+          <a href="#"><i class="fab fa-google"></i></a> 
+        </div>
+        <p>Don't Have Account? <a href="Registration.php">Sign Up</a></p> 
+      </form>
+      <button onclick="window.location.href='FairWheel.php'">Back</button> 
+    </div>
+    
+    <script>
+      // Toggle password visibility
+      function togglePasswordVisibility() {
+        const password = document.getElementById("password");
+        const toggleIcon = document.getElementById("togglePassword");
+        if (password.type === "password") {
+          password.type = "text";
+          toggleIcon.classList.remove("fa-eye-slash");
+          toggleIcon.classList.add("fa-eye");
+        } else {
+          password.type = "password";
+          toggleIcon.classList.remove("fa-eye");
+          toggleIcon.classList.add("fa-eye-slash");
+        }
+      }
+      
+      // Form submission handling
+      const form = document.getElementById("loginForm");
+      
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById("email").value; 
+        const password = document.getElementById("password").value;
+        
+        try {
+          const response = await fetch("FairWheel.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+              email,
+              password,
+            }),
+          });
+          
+          const result = await response.json();
+          console.log(result); // Log the result to the console
+          
+          if (result.success) {
+            // Redirect to FairWheel.php on success
+            window.location.href = "FairWheel.php";
+          } else {
+            // Show error message
+            alert(result.error || "Invalid login credentials.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Invalid Pass or Email.");
+        }
+      });
+    </script>
+  </body>
+  </html>
