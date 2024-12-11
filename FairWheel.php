@@ -141,8 +141,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(['success' => false, 'error' => 'Invalid email or password. Please try again.']);
     }
 
-    // Close statement
+
+   // Assuming session_start() is already called at the top of the file
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $user_id = $_SESSION['id'];  // Fetch user_id from session
+
+    // Get form data
+    $fullName = $_POST['fullName'];
+    $gender = $_POST['gender'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $email = $_POST['email'];
+
+    // Prepare SQL query to update user profile
+    $stmt = $conn->prepare("UPDATE users SET full_name = ?, gender = ?, phone_number = ?, email = ? WHERE id = ?");
+    $stmt->bind_param("ssssi", $fullName, $gender, $phoneNumber, $email, $user_id);
+
+    // Execute and check for success
+    if ($stmt->execute()) {
+        echo "<script>alert('Profile updated successfully!');</script>";
+        // Reload the page or redirect to FairWheel.php
+        header("Location: Profile.php"); 
+        exit;
+    } else {
+        echo "<script>alert('Failed to update profile.');</script>";
+    }
+
+    
     $stmt->close();
+}
+
 }
 
 // Close database connection
@@ -391,7 +418,7 @@ if (bookButton) {
      * Redirect to Profile.html when the profile button is clicked.
      */
     function redirectToProfile() {
-        window.location.href = "Profile.html";
+        window.location.href = "Profile.php";
     }
 
     /**

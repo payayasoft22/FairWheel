@@ -10,104 +10,333 @@
       margin: 0;
       padding: 20px;
       background-color: #f5f5f5;
+      box-sizing: border-box;
     }
 
     .container {
-      width: 100%; /* Full width */
-      max-width: 90%; /* Optional max-width for responsiveness */
+      width: 100%;
+      max-width: 90%;
       margin: 0 auto;
       background: #ffffff;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      
     }
 
     h2 {
-      text-align: left; /* Aligned to the left */
-      margin-bottom: 10px; /* Reduced margin */
+      text-align: left;
+      margin-bottom: 10px;
       font-size: 20px;
       font-weight: 750;
     }
 
     .info-section {
       margin-bottom: 20px;
-      padding: 0px 30px; /* Reduced margin */
+      padding: 0px 30px;
     }
 
     .info-section p {
-      margin-bottom: 5px; /* Reduced margin */
-      font-size: 14px; /* Smaller font size */
+      margin-bottom: 5px;
+      font-size: 14px;
     }
 
     .info-section strong {
       display: inline-block;
-      width: 120px; /* Adjusted width */
-      font-weight: normal; /* Normal font weight */
+      width: 120px;
+      font-weight: normal;
     }
 
     .payment-info p {
-    padding: 0px 30px;
+      padding: 0px 30px;
       display: flex;
       justify-content: space-between;
       margin-bottom: 5px;
-      font-size: 14px; /* Smaller font size */
+      font-size: 14px;
     }
 
     .payment-info .total {
       font-weight: bold;
       font-size: 18px;
-      margin-top: 10px; /* Added margin */
+      margin-top: 10px;
     }
 
     button {
-  background-color: #94DE98;
-  color: rgb(0, 0, 0);
-  border: none;
-  padding: 10px 50px; /* Increased padding */
-  border-radius: 15px;
-  cursor: pointer;
-  margin-top: 20px;
-  width: 100%; /* Make buttons full width on smaller screens */
-  max-width: 300px; /* Limit button width on larger screens */
-  box-sizing: border-box; /* Include padding and border in width */
-
-}
+      background-color: #94DE98;
+      color: rgb(0, 0, 0);
+      border: none;
+      padding: 10px 50px;
+      border-radius: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 300px;
+      box-sizing: border-box;
+    }
 
     button:hover {
       background-color: #6EBB71;
     }
-    .info-section {
-      border: 3px solid #ddd; /* Add border to the bottom */
-      padding-bottom: 15px; /* Add padding to the bottom */
-      border-radius: 15px;
-    }
-    .payment-info button [name="cancel"]{
-      background-color: white;
+    button[name="cancel"]:hover {
+  background-color: #94de98; /* New hover background color */
+  color: rgb(0, 0, 0); /* Change text color to white on hover for contrast */
+}
 
+    .info-section {
+      border: 3px solid #ddd;
+      padding-bottom: 15px;
+      border-radius: 15px;
     }
 
     .payment-info {
-        
-      border: 3px solid #ddd; /* Add border to the bottom */
+      border: 3px solid #ddd;
       padding-bottom: 15px;
       border-radius: 15px;
-      flex-direction: column;  /* Stack buttons vertically */
-  align-items: center;    /* Center buttons horizontally */
-  gap: 10px;             /* Add some space between buttons */ 
-      
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
-    .payment-info p[name="ins"] { 
-        border-bottom: 2px solid #ddd; 
-      /* Add margin to the bottom of the insurance line */
+
+    .payment-info p[name="ins"] {
+      border-bottom: 2px solid #ddd;
+    }
+
+    button[name="cancel"] {
+      background-color: white;
+      border: 2px solid #ddd;
+      transition: background-color 0.5s ease;
+    }
+    .modal-footer button[type="button"]:hover { 
+  background-color: #94de98; /* Hover background color */
+  color: rgb(0, 0, 0); /* Change text color to white on hover */
 }
-button[name="cancel"] {
-  background-color: white; 
-  border: 2px solid #ddd;
-  transition: background-color 0.5s ease;
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding-top: 50px;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin: auto;
+      width: 90%; /* Adjusted for responsiveness */
+      max-width: 500px; /* Added max-width */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-body {
+      margin-right: 20px;
+    }
+
+    .summary {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px; /* Add space between payment methods and summary */
+    }
+
+    .summary h3 {
+      margin-top: 0;
+    }
+
+    .summary p {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .summary p[name="summary-insurance"] {
+      border-bottom: 2px solid #ddd;
+    }
+
+    #payment-form input[type="text"],
+    #payment-form input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    #payment-form input[type="text"]:focus,
+    #payment-form input[type="email"]:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .payment-method {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .payment-method input[type="radio"] {
+      display: none;
+    }
+
+    .payment-method label {
+      display: inline-block;
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+    }
+
+    .payment-method label::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+    }
+
+    #card+label::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url('credit card.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #paymaya+label::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url('maya logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #gcash+label::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url('gcash.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #paypal+label::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url('paypal.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .modal-footer {
+  display: flex;
+  justify-content: space-around; /* Distribute buttons evenly */
+  /* Add more styles as needed */
 }
-button:hover {
-  background-color: #6EBB71;
+
+.modal-footer button {
+  flex: 1; /* Allow buttons to grow and take equal space */
+  margin: 0 5px; /* Add some space between buttons */
+}
+
+.modal-footer button:last-child { /* Target the Cancel button */
+  background-color: white;
+  color: #333; /* Example text color */
+  border: 1px solid #ccc; /* Example border */
+}
+    /* Media query for responsiveness - adjust as needed */
+/* Media query for responsiveness - adjust as needed */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 87%; /* Make modal content width 90% of screen */
+    padding: 15px; /* Add some padding for better spacing */
+    max-width: 400px; /* Limit max width to prevent it being too wide */
+    margin: 0 10px; /* Ensure it doesn't touch screen edges */
+  }
+
+  .modal-body {
+    margin-right: 0; /* Remove right margin */
+  }
+
+  .summary {
+    margin-top: 10px;
+  }
+
+  button {
+    padding: 8px 20px;
+    width: 100%; /* Make buttons full width for better accessibility */
+  }
+
+  /* Reduce font size for smaller screens */
+  .info-section p,
+  .payment-info p {
+    font-size: 12px; /* Smaller text for better readability on small screens */
+  }
+
+  .info-section strong,
+  .payment-info .total {
+    font-size: 14px; /* Slightly larger for emphasis */
+  }
+
+  .modal-footer {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+    width: 100%; /* Ensure footer spans the full width */
+  }
+
+  .modal-footer button {
+    margin: 5px 0; /* Adjust margin for vertical layout */
+    width: 100%; /* Full width for better accessibility */
+  }
+
+  .payment-method label {
+    font-size: 14px; /* Reduce font size for better fit */
+  }
+
+  .payment-info {
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Add gap between elements */
+    align-items: center; /* Center payment info */
+  }
+
+  .modal-header {
+    font-size: 16px; /* Reduce the font size of the header */
+    margin-bottom: 10px; /* Add some space below the header */
+  }
+
+  .modal {
+    padding-top: 50px; /* Ensure modal is centered vertically */
+  }
 }
 
   </style>
@@ -135,6 +364,63 @@ button:hover {
     </div>
 
     <button onclick="payNow()">Pay Now</button>
+    <div id="payment-modal" class="modal">
+      <div class="modal-content">
+          <div class="modal-body">
+            <form id="payment-form">
+              <div class="payment-method">
+                  <input type="radio" name="paymentMethod" value="card" id="card">
+                  <label for="card">Credit/Debit Card</label>
+              </div>
+              <div id="card-details" style="display: none;"> 
+                  <input type="text" id="card-number" placeholder="Card Number" required><br>
+                  <input type="text" id="expiry-date" placeholder="Expiry Date (MM/YY)" required><br>
+                  <input type="text" id="cvv" placeholder="CVV" required><br>
+              </div>
+          
+              <div class="payment-method">
+                  <input type="radio" name="paymentMethod" value="paymaya" id="paymaya">
+                  <label for="paymaya">PayMaya</label>
+              </div>
+              <div id="paymaya-details" style="display: none;">
+                  <input type="text" id="paymaya-number" placeholder="PayMaya Number" required><br>
+              </div>
+          
+              <div class="payment-method">
+                  <input type="radio" name="paymentMethod" value="gcash" id="gcash">
+                  <label for="gcash">GCash</label>
+              </div>
+              <div id="gcash-details" style="display: none;">
+                  <input type="text" id="gcash-number" placeholder="GCash Number" required><br>
+              </div>
+          
+              <div class="payment-method">
+                  <input type="radio" name="paymentMethod" value="paypal" id="paypal">
+                  <label for="paypal">PayPal</label>
+              </div>
+              <div id="paypal-details" style="display: none;">
+                  <input type="email" id="paypal-email" placeholder="PayPal Email" required><br>
+              </div>
+          
+                  <div class="modal-footer">
+                    <button type="submit" onclick="showSuccessMessageAndRedirect()">Pay</button>
+                      <button type="button" onclick="closeModal()">Cancel</button>
+                  </div>
+              </form>
+          </div>
+          <div class="summary">
+              <h3>Order Summary</h3>
+              <p>Depart Journey Fare <span id="summary-depart-fare">0.00</span></p>
+              <p>Return Journey Fare <span id="summary-return-fare">0.00</span></p>
+              <p>Ticket Surcharge <span id="summary-ticket-surcharge">0.00</span></p>
+              <p>Discount <span id="summary-discount">-0.00</span></p>
+              <p>Insurance Protection <span id="summary-insurance" name="summary-insurance">0.00</span></p>
+              <p class="total">TOTAL <span id="summary-total-price">0.00</span></p>
+          </div>
+      </div>
+  </div>
+
+
     <button name="cancel" onclick="cancel()">Cancel</button>
   </div>
 
@@ -200,7 +486,6 @@ button:hover {
             returnFare = priceList[ticket.to_location][ticket.from_location] || 0;
           }
 
-          // Example surcharge, discount, and insurance calculations (replace with your actual logic)
           let ticketSurcharge = 99; 
           let discount = 0;
           let insurance = 150;
@@ -230,15 +515,157 @@ button:hover {
       console.error("Ticket data not found in URL parameters.");
     }
 
+   
     function payNow() {
-      // Implement your payment logic here
-      alert("Payment processing...");
+    document.getElementById('payment-modal').style.display = 'block';
+
+
+    document.getElementById('summary-depart-fare').textContent = document.getElementById('depart-fare').textContent;
+    document.getElementById('summary-return-fare').textContent = document.getElementById('return-fare').textContent;
+    document.getElementById('summary-ticket-surcharge').textContent = document.getElementById('ticket-surcharge').textContent;
+    document.getElementById('summary-discount').textContent = document.getElementById('discount').textContent;
+    document.getElementById('summary-insurance').textContent = document.getElementById('insurance').textContent;
+    document.getElementById('summary-total-price').textContent = document.getElementById('total-price').textContent;
+}
+
+function closeModal() {
+    document.getElementById('payment-modal').style.display = 'none';
+}
+
+document.getElementById('payment-form').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+    console.log("Selected Payment Method:", selectedMethod); 
+
+    
+
+    closeModal(); 
+});
+
+
+// ... (your existing JavaScript) ...
+
+// Function to show/hide payment details based on selected method
+function showPaymentDetails() {
+    const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+
+    if (!selectedMethod) return;
+
+    const paymentDetails = {
+        card: 'card-details',
+        paymaya: 'paymaya-details',
+        gcash: 'gcash-details',
+        paypal: 'paypal-details'
+    };
+
+    // Hide all payment detail sections initially
+    Object.values(paymentDetails).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.style.display = 'none';
+    });
+
+    // Show the selected method's details
+    const selectedDetailId = paymentDetails[selectedMethod.value];
+    const selectedDetailElement = document.getElementById(selectedDetailId);
+
+    if (selectedDetailElement) {
+        selectedDetailElement.style.display = 'block';
+    }
+}
+
+// Add event listener to radio buttons to show/hide details
+const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+paymentMethods.forEach(method => {
+    method.addEventListener('change', showPaymentDetails);
+});
+
+const processTicket = async (ticketId) => {
+    try {
+       
+
+        const response = await fetch('ticket_payment.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ticket_id: ticketId }) 
+        });
+
+        const data = await response.json();
+
+    } catch (error) {
+        console.error('Error processing ticket:', error);
+
+
+        alert('There was an issue processing the payment. Please check your connection and try again.'); 
+    }
+};
+
+function showSuccessMessageAndRedirect(event) {
+    // Prevent default action if this is called in a form submission
+    if (event) {
+        event.preventDefault();
     }
 
-    function cancel() {
-      // Implement your cancel logic here
-      window.location.href = 'Tickets.html'; // Redirect back to the tickets page
+    // Check if a payment method is selected
+    const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+    if (!selectedMethod) {
+        alert("Please select a payment method.");
+        return; // Stop execution if no method is selected
     }
+
+    // Validate input fields based on the selected payment method
+    const selectedMethodValue = selectedMethod.value;
+
+    let isValid = true;
+    if (selectedMethodValue === "card") {
+        const cardNumber = document.getElementById("card-number").value.trim();
+        const expiryDate = document.getElementById("expiry-date").value.trim();
+        const cvv = document.getElementById("cvv").value.trim();
+
+        if (!cardNumber || !expiryDate || !cvv) {
+            alert("Please fill in all Credit/Debit Card details.");
+            isValid = false;
+        }
+    } else if (selectedMethodValue === "paymaya") {
+        const paymayaNumber = document.getElementById("paymaya-number").value.trim();
+
+        if (!paymayaNumber) {
+            alert("Please fill in your PayMaya number.");
+            isValid = false;
+        }
+    } else if (selectedMethodValue === "gcash") {
+        const gcashNumber = document.getElementById("gcash-number").value.trim();
+
+        if (!gcashNumber) {
+            alert("Please fill in your GCash number.");
+            isValid = false;
+        }
+    } else if (selectedMethodValue === "paypal") {
+        const paypalEmail = document.getElementById("paypal-email").value.trim();
+
+        if (!paypalEmail) {
+            alert("Please fill in your PayPal email.");
+            isValid = false;
+        }
+    }
+
+    if (!isValid) {
+        return; // Stop execution if validation fails
+    }
+
+
+    // Display the success message
+    alert("Successfully paid!");
+
+    // Redirect to FairWheel.php after payment
+    window.location.href = "FairWheel.php";
+}
+// Implement the cancel logic
+function cancel() {
+    window.location.href = 'Tickets.html'; // Redirect back to the tickets page
+}
+
   </script>
 </body>
 </html>

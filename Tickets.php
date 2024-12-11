@@ -8,12 +8,7 @@ $password = '';
 // Set response to JSON
 header('Content-Type: application/json');
 
-// CORS Headers (if needed)
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-
-// Start session to manage user authentication 
+// Start session to manage user authentication
 session_start();
 
 // Establish Database Connection
@@ -152,22 +147,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             }
 
+            // Update occupied_seats
             $occupiedSeats = $ticket['occupied_seats'] ? explode(',', $ticket['occupied_seats']) : [];
             foreach ($updates['seat'] as $seat) {
                 if (in_array($seat, $occupiedSeats)) {
                     echo json_encode(['success' => false, 'error' => "Seat $seat is already occupied."]);
                     exit;
                 }
+                $occupiedSeats[] = $seat;
             }
 
+            $occupiedSeatsString = implode(',', $occupiedSeats);
             $selectedSeat = implode(',', $updates['seat']);
             $busOperator = $updates['operator'];
+
             $stmt = $pdo->prepare("
                 UPDATE tickets 
-                SET selected_seat = :selected_seat, bus_operator = :bus_operator 
+                SET occupied_seats = :occupied_seats, selected_seat = :selected_seat, bus_operator = :bus_operator 
                 WHERE id = :id
             ");
             $stmt->execute([
+                'occupied_seats' => $occupiedSeatsString,
                 'selected_seat' => $selectedSeat,
                 'bus_operator' => $busOperator,
                 'id' => $ticketId,
