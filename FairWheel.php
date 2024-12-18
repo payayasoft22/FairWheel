@@ -177,6 +177,7 @@ $conn->close();
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -204,8 +205,8 @@ $conn->close();
             <li><a href="Contact-us.php">Contact Us</a></li>
             <div class="Sign-in" id="authButtons">
                 <?php if (!isset($_SESSION['email'])): // User not logged in ?>
-                    <li><button class="button-sign" id="LoginButton" onclick="window.location.href='LoginFrom.html'">Sign in</button></li>
-                    <li><button class="button-register" onclick="window.location.href='Registration.php';">Register</button></li>
+                    <li><button class="button-sign" id="LoginButton" onclick="window.location.href='LoginFrom.php'">Sign in</button></li>
+                    <li><button class="button-register" onclick="window.location.href='Registration.html';">Register</button></li>
                 <?php else: // User is logged in ?>
                     <li class="account-item">
     <button class="account-circle" onclick="redirectToProfile()">
@@ -216,40 +217,63 @@ $conn->close();
 
 
 <style>
-
-/* Styling the button */
 .account-circle {
     margin: 0;
     background-color: transparent;
     border: none;
-    cursor: pointer; /* Change cursor to pointer */
+    cursor: pointer;
     bottom: 9px;
     border-radius: 50%; 
     position: relative;
-    transition: transform 0.2s ease, background-color 0.3s ease; /* Add smooth hover effects */
-    width: 70px; /* Explicit size for consistent scaling */
-    display: flex; /* Center icon */
+    transition: transform 0.2s ease, background-color 0.3s ease; 
+    display: flex; 
+    margin-right: 30px;
     align-items: center; 
     justify-content: center;
 }
 
-/* Add hover effect to the button */
+
+.account-item {
+    list-style: none; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+
 .account-circle:hover {
-    transform: scale(1.2); 
+    background-color: #50C878; 
+    transform: scale(1.1); 
 }
 
-/* Styling the icon */
+
 .account-circle i {
-    font-size: 35px;
+    font-size: 35px; 
     color: black; 
-    transition: color 0.3s ease; 
+    transition: color 0.3s ease;
 }
 
-/* Change icon color on hover */
 .account-circle:hover i {
-    color: #50C878; 
+    color: white; 
 }
-                
+
+
+@media (max-width: 803px) {
+    .account-circle {
+        width: 50px;
+        height: 50px; 
+    }
+
+    .account-circle i {
+        font-size: 35px; 
+    }
+
+    .account-item {
+        margin: 5px;
+    }
+}
+</style>
+     
 </style>
                 <?php endif; ?>
             </div>
@@ -361,11 +385,11 @@ function isLoggedIn() {
 async function handelBooking() {
   if (!isLoggedIn()) {
     alert("Please log in first to book tickets.");
-    window.location.href = "LoginFrom.html"; 
+    window.location.href = "LoginFrom.php"; 
     return;
   }
 
-  // ... (rest of your booking logic) ...
+
 }
 
 // Add event listeners to "My Ticket" and "Book" buttons
@@ -377,7 +401,7 @@ if (ticketsButton) {
     if (!isLoggedIn()) {
       event.preventDefault(); // Prevent default link behavior
       alert("Please log in first to view your tickets.");
-      window.location.href = "LoginFrom.html"; 
+      window.location.href = "LoginFrom.php"; 
     } 
   });
 }
@@ -505,7 +529,7 @@ if (bookButton) {
         document.getElementById('loginModal').style.display = 'none';
     }
 
-    // Function to simulate user login (you should implement your actual login logic)
+    // Function to simulate user login
     function loginUser() {
     // Simulate a successful login
     localStorage.setItem('user', 'exampleUser'); // Store user in local storage

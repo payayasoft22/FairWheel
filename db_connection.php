@@ -1,9 +1,9 @@
 <?php
 // db_connection.php
 $servername = "localhost";
-$username = "root";  // Default username for XAMPP
-$password = "";      // Default password for XAMPP (empty)
-$dbname = "fairwheel_db";  // Replace with your database name
+$username = "root";  
+$password = "";      
+$dbname = "fairwheel_db";  
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

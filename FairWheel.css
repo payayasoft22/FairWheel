@@ -916,6 +916,7 @@ footer {
 
 .error-message {
     color: red;
-    display: none; /* Hidden by default */
-    margin-bottom: 5px; /* Space between error message and input */
+    display: none; 
+    margin-bottom: 5px; 
 }
+

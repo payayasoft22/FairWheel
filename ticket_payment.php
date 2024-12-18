@@ -1,57 +1,94 @@
 <?php
-// Database connection
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "fairwheel_db";
+$dbname = "fairwheel_db";
 
-$conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get ticket ID from the form
-$ticket_id = $_POST['ticket_id'];
+// Get data from POST request
+$requestBody = file_get_contents('php://input');
+$data = json_decode($requestBody, true);
 
-// Fetch the ticket data
-$sql_fetch = "SELECT * FROM tickets WHERE id = ?";
-$stmt_fetch = $conn->prepare($sql_fetch);
-$stmt_fetch->bind_param("i", $ticket_id);
-$stmt_fetch->execute();
-$result = $stmt_fetch->get_result();
+// Check if JSON decoding was successful and data exists
+if (json_last_error() === JSON_ERROR_NONE && is_array($data)) {
+    $ticketId = $data['ticket_id'];
+    $paymentMethod = $data['payment_method'];
+    $totalPrice = $data['total_price'];
 
-if ($result->num_rows > 0) {
-    // Insert data into completed_tickets
-    $ticket = $result->fetch_assoc();
-    $sql_insert = "INSERT INTO completed_tickets (column1, column2, column3) VALUES (?, ?, ?)";
-    $stmt_insert = $conn->prepare($sql_insert);
-    $stmt_insert->bind_param(
-        "sss",
-        $ticket['column1'],
-        $ticket['column2'],
-        $ticket['column3']
-    );
+    try {
+        // Start a transaction
+        $conn->begin_transaction();
 
-    if ($stmt_insert->execute()) {
-        // Delete from tickets table
-        $sql_delete = "DELETE FROM tickets WHERE id = ?";
-        $stmt_delete = $conn->prepare($sql_delete);
-        $stmt_delete->bind_param("i", $ticket_id);
+        // Prepare the SELECT statement
+        $selectStmt = $conn->prepare("SELECT * FROM tickets WHERE ticket_number = ?");
+        $selectStmt->bind_param("s", $ticketId);
+        $selectStmt->execute();
+        $result = $selectStmt->get_result();
 
-        if ($stmt_delete->execute()) {
-            echo "Payment processed successfully.";
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // Prepare the INSERT statement for the history table
+            $insertStmt = $conn->prepare("INSERT INTO history (
+                ticket_number, user_id, from_location, to_location, departure_date, 
+                return_date, bus_operator, selected_seat, trip_type, payment_method, total_price
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            $insertStmt->bind_param("sissssssssd", 
+                $row['ticket_number'], $row['user_id'], $row['from_location'], $row['to_location'], 
+                $row['departure_date'], $row['return_date'], $row['bus_operator'], $row['selected_seat'], 
+                $row['trip_type'], $paymentMethod, $totalPrice
+            );
+
+            if ($insertStmt->execute()) {
+                // Prepare the DELETE statement
+                $deleteStmt = $conn->prepare("DELETE FROM tickets WHERE ticket_number = ?");
+                $deleteStmt->bind_param("s", $ticketId);
+
+                if ($deleteStmt->execute()) {
+                    // Commit transaction
+                    $conn->commit();
+                    echo json_encode(['status' => 'success']);
+                } else {
+                    // Rollback transaction on delete error
+                    $conn->rollback();
+                    echo json_encode(['status' => 'error', 'message' => 'Error deleting ticket: ' . $conn->error]);
+                }
+
+            } else {
+                // Rollback transaction on insert error
+                $conn->rollback();
+                echo json_encode(['status' => 'error', 'message' => 'Error inserting into history: ' . $conn->error]);
+            }
+
         } else {
-            echo "Error deleting ticket: " . $conn->error;
+            echo json_encode(['status' => 'error', 'message' => 'Ticket not found']);
         }
-    } else {
-        echo "Error inserting into completed_tickets: " . $conn->error;
+
+    } catch (Exception $e) {
+        // Rollback transaction on any exception
+        $conn->rollback();
+        echo json_encode(['status' => 'error', 'message' => 'Error processing payment: ' . $e->getMessage()]);
+    } finally {
+        // Close statements
+        if (isset($selectStmt)) $selectStmt->close();
+        if (isset($insertStmt)) $insertStmt->close();
+        if (isset($deleteStmt)) $deleteStmt->close();
     }
+
 } else {
-    echo "Ticket not found.";
+    // Handle JSON decoding error or missing data
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request data']);
 }
 
-// Close connection
-$conn->close();
+$conn->close(); 
+
 ?>

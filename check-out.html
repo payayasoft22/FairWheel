@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout Page</title>
+  <title>Checkout Ticket</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -77,8 +77,8 @@
       background-color: #6EBB71;
     }
     button[name="cancel"]:hover {
-  background-color: #94de98; /* New hover background color */
-  color: rgb(0, 0, 0); /* Change text color to white on hover for contrast */
+  background-color: #94de98; 
+  color: rgb(0, 0, 0); 
 }
 
     .info-section {
@@ -106,8 +106,8 @@
       transition: background-color 0.5s ease;
     }
     .modal-footer button[type="button"]:hover { 
-  background-color: #94de98; /* Hover background color */
-  color: rgb(0, 0, 0); /* Change text color to white on hover */
+  background-color: #94de98; 
+  color: rgb(0, 0, 0);
 }
     .modal {
       display: none;
@@ -125,8 +125,8 @@
       padding: 20px;
       border-radius: 10px;
       margin: auto;
-      width: 90%; /* Adjusted for responsiveness */
-      max-width: 500px; /* Added max-width */
+      width: 90%; 
+      max-width: 500px; 
       display: flex;
       flex-direction: column;
     }
@@ -139,7 +139,7 @@
       border: 1px solid #ddd;
       padding: 10px;
       border-radius: 5px;
-      margin-top: 20px; /* Add space between payment methods and summary */
+      margin-top: 20px; 
     }
 
     .summary h3 {
@@ -260,32 +260,32 @@
     }
     .modal-footer {
   display: flex;
-  justify-content: space-around; /* Distribute buttons evenly */
-  /* Add more styles as needed */
+  justify-content: space-around; 
+
 }
 
 .modal-footer button {
-  flex: 1; /* Allow buttons to grow and take equal space */
-  margin: 0 5px; /* Add some space between buttons */
+  flex: 1; 
+  margin: 0 5px; 
 }
 
-.modal-footer button:last-child { /* Target the Cancel button */
+.modal-footer button:last-child { 
   background-color: white;
-  color: #333; /* Example text color */
-  border: 1px solid #ccc; /* Example border */
+  color: #333; 
+  border: 1px solid #ccc; 
 }
-    /* Media query for responsiveness - adjust as needed */
-/* Media query for responsiveness - adjust as needed */
+
+
 @media (max-width: 600px) {
   .modal-content {
-    width: 87%; /* Make modal content width 90% of screen */
-    padding: 15px; /* Add some padding for better spacing */
-    max-width: 400px; /* Limit max width to prevent it being too wide */
-    margin: 0 10px; /* Ensure it doesn't touch screen edges */
+    width: 87%; 
+    padding: 15px; 
+    max-width: 400px; 
+    margin: 0 10px;
   }
 
   .modal-body {
-    margin-right: 0; /* Remove right margin */
+    margin-right: 0; 
   }
 
   .summary {
@@ -294,50 +294,55 @@
 
   button {
     padding: 8px 20px;
-    width: 100%; /* Make buttons full width for better accessibility */
+    width: 100%; 
   }
 
-  /* Reduce font size for smaller screens */
+
   .info-section p,
   .payment-info p {
-    font-size: 12px; /* Smaller text for better readability on small screens */
+    font-size: 12px;
   }
 
   .info-section strong,
   .payment-info .total {
-    font-size: 14px; /* Slightly larger for emphasis */
+    font-size: 14px;
   }
 
   .modal-footer {
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center buttons horizontally */
-    width: 100%; /* Ensure footer spans the full width */
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%; 
   }
 
   .modal-footer button {
-    margin: 5px 0; /* Adjust margin for vertical layout */
-    width: 100%; /* Full width for better accessibility */
+    margin: 5px 0; 
+    width: 100%; 
   }
 
   .payment-method label {
-    font-size: 14px; /* Reduce font size for better fit */
+    font-size: 14px;
   }
 
   .payment-info {
-    flex-direction: column; /* Stack items vertically */
-    gap: 10px; /* Add gap between elements */
-    align-items: center; /* Center payment info */
+    flex-direction: column; 
+    gap: 10px; 
+    align-items: center; 
   }
 
   .modal-header {
-    font-size: 16px; /* Reduce the font size of the header */
-    margin-bottom: 10px; /* Add some space below the header */
+    font-size: 16px; 
+    margin-bottom: 10px; 
   }
 
   .modal {
-    padding-top: 50px; /* Ensure modal is centered vertically */
+    padding-top: 50px; 
   }
 }
+
+#ticket-number {
+  display: none; 
+}
+
 
   </style>
 </head>
@@ -355,6 +360,7 @@
 
     <h2>PAYMENT INFORMATION</h2>
     <div class="payment-info">
+      <p id="ticket-number"></p>
       <p>Depart Journey Fare <span id="depart-fare">0.00</span></p>
       <p>Return Journey Fare <span id="return-fare">0.00</span></p>
       <p>Ticket Surcharge <span id="ticket-surcharge">0.00</span></p>
@@ -364,10 +370,12 @@
     </div>
 
     <button onclick="payNow()">Pay Now</button>
-    <div id="payment-modal" class="modal">
-      <div class="modal-content">
-          <div class="modal-body">
-            <form id="payment-form">
+    
+   
+<div id="payment-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-body">
+      <form id="payment-form">
               <div class="payment-method">
                   <input type="radio" name="paymentMethod" value="card" id="card">
                   <label for="card">Credit/Debit Card</label>
@@ -401,11 +409,23 @@
               <div id="paypal-details" style="display: none;">
                   <input type="email" id="paypal-email" placeholder="PayPal Email" required><br>
               </div>
+               <!-- Checkbox to use saved payment method -->
+        <div>
+          <input type="checkbox" id="use-saved-payments" onchange="toggleSavedPayments()">
+          <label for="use-saved-payments">Use saved payment methods</label>
+        </div>
+
+        <!-- Saved payments section will appear when checkbox is checked -->
+        <div id="saved-payments-section" style="display: none;">
+          <h3>Saved Payment Methods</h3>
+          <div id="saved-payments"></div>
+        </div>
           
                   <div class="modal-footer">
-                    <button type="submit" onclick="showSuccessMessageAndRedirect()">Pay</button>
+                    <button type="submit" onclick="PaymentSuccess(event)">Pay</button>
                       <button type="button" onclick="closeModal()">Cancel</button>
                   </div>
+                  
               </form>
           </div>
           <div class="summary">
@@ -425,6 +445,54 @@
   </div>
 
   <script>
+    // Fetch saved payment methods from the server
+function fetchSavedPayments() {
+    fetch('payment_methods.php') 
+        .then(response => response.json())
+        .then(data => {
+            displaySavedPayments(data);
+        })
+        .catch(error => console.error("Error fetching saved payments:", error));
+}
+
+// Dynamically display saved payment methods
+function displaySavedPayments(savedPayments) {
+    const savedPaymentsDiv = document.getElementById('saved-payments');
+    savedPaymentsDiv.innerHTML = ''; // Clear existing content
+
+    if (savedPayments.length > 0) {
+        savedPayments.forEach(payment => {
+            const radio = `
+              <div>
+                <input type="radio" name="paymentMethod" value="saved-${payment.id}" id="saved-${payment.id}">
+                <label for="saved-${payment.id}">${payment.type}: ${payment.details}</label>
+              </div>
+            `;
+            savedPaymentsDiv.innerHTML += radio;
+        });
+    }
+}
+
+// Toggle the saved payment methods visibility when checkbox is clicked
+function toggleSavedPayments() {
+    const isChecked = document.getElementById('use-saved-payments').checked;
+    const savedPaymentsSection = document.getElementById('saved-payments-section');
+
+    if (isChecked) {
+        savedPaymentsSection.style.display = 'block';
+        fetchSavedPayments(); // Fetch saved payments when checkbox is checked
+    } else {
+        savedPaymentsSection.style.display = 'none';
+    }
+}
+
+function payNow() {
+    document.getElementById('payment-modal').style.display = 'block';
+    fetchSavedPayments(); // Fetch saved payments when opening the payment modal
+}
+
+
+
     // Get ticket data from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const ticketData = urlParams.get('ticket');
@@ -432,6 +500,8 @@
     if (ticketData) {
       try {
         const ticket = JSON.parse(decodeURIComponent(ticketData));
+        document.getElementById('ticket-number').textContent = ticket.ticket_number;
+        
 
         // Populate the page with ticket information
         document.getElementById('departure-date').textContent = ticket.departure_date;
@@ -440,7 +510,46 @@
         document.getElementById('bus-operator').textContent = ticket.bus_operator;
         document.getElementById('seat-numbers').textContent = ticket.selected_seat?.join(', ') || "No seat selected";
 
+        function PaymentSuccess(event) {
+  event.preventDefault(); // Prevent default form submission behavior
 
+  const ticketId = document.getElementById('ticket-number').textContent;
+  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+  const totalPrice = document.getElementById('total-price').textContent;
+
+  // Send data to server for processing
+  fetch('ticket_payment.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      ticket_id: ticketId,
+      payment_method: paymentMethod,
+      total_price: totalPrice
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (data.status === 'success') {
+      // Show success message and redirect
+      alert('Payment successful! Thank You!');
+      window.location.href = 'Tickets.html';
+    } else {
+      // Handle errors from the server
+      throw new Error('Payment failed: ' + (data.message || 'Unknown error'));
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('There was an error processing your payment: ' + error.message);
+  });
+}
         // Function to calculate and display payment information
         function calculateAndDisplayPaymentInfo(ticket) {
           // Price list for all routes (one-way)
@@ -545,7 +654,7 @@ document.getElementById('payment-form').addEventListener('submit', function(even
 });
 
 
-// ... (your existing JavaScript) ...
+
 
 // Function to show/hide payment details based on selected method
 function showPaymentDetails() {
@@ -601,67 +710,29 @@ const processTicket = async (ticketId) => {
     }
 };
 
-function showSuccessMessageAndRedirect(event) {
-    // Prevent default action if this is called in a form submission
-    if (event) {
-        event.preventDefault();
-    }
+function showSuccessMessageAndRedirect() {
+    const ticketId = "ticket_number"; 
 
-    // Check if a payment method is selected
-    const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
-    if (!selectedMethod) {
-        alert("Please select a payment method.");
-        return; // Stop execution if no method is selected
-    }
-
-    // Validate input fields based on the selected payment method
-    const selectedMethodValue = selectedMethod.value;
-
-    let isValid = true;
-    if (selectedMethodValue === "card") {
-        const cardNumber = document.getElementById("card-number").value.trim();
-        const expiryDate = document.getElementById("expiry-date").value.trim();
-        const cvv = document.getElementById("cvv").value.trim();
-
-        if (!cardNumber || !expiryDate || !cvv) {
-            alert("Please fill in all Credit/Debit Card details.");
-            isValid = false;
+    // Make an AJAX request to send ticket data to the server
+    fetch('ticket_payment.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticket_id: ticketId })
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = 'FairWheel.php'; // Redirect to fairwheel.php if payment is successful
+        } else {
+            alert('There was an error processing your payment. Please try again.');
         }
-    } else if (selectedMethodValue === "paymaya") {
-        const paymayaNumber = document.getElementById("paymaya-number").value.trim();
-
-        if (!paymayaNumber) {
-            alert("Please fill in your PayMaya number.");
-            isValid = false;
-        }
-    } else if (selectedMethodValue === "gcash") {
-        const gcashNumber = document.getElementById("gcash-number").value.trim();
-
-        if (!gcashNumber) {
-            alert("Please fill in your GCash number.");
-            isValid = false;
-        }
-    } else if (selectedMethodValue === "paypal") {
-        const paypalEmail = document.getElementById("paypal-email").value.trim();
-
-        if (!paypalEmail) {
-            alert("Please fill in your PayPal email.");
-            isValid = false;
-        }
-    }
-
-    if (!isValid) {
-        return; // Stop execution if validation fails
-    }
-
-
-    // Display the success message
-    alert("Successfully paid!");
-
-    // Redirect to FairWheel.php after payment
-    window.location.href = "FairWheel.php";
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error processing your payment. Please check your connection.');
+    });
 }
-// Implement the cancel logic
+
+
 function cancel() {
     window.location.href = 'Tickets.html'; // Redirect back to the tickets page
 }

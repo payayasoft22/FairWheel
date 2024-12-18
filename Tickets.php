@@ -182,5 +182,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo json_encode(['success' => false, 'error' => 'Invalid action.']);
     exit;
+
+  // Pseudo code for handling the 'fetchOccupiedSeats' request in your PHP file
+if ($_POST['action'] === 'fetchOccupiedSeats') {
+    $operator = $_POST['bus_operator'];
+    $departureDate = $_POST['departure_date'];
+    $fromLocation = $_POST['from_location'];
+    $toLocation = $_POST['to_location'];
+
+    // Query the database to get the occupied seats based on these details
+    // Assume we have a table 'tickets' that holds the seat numbers and operator details
+    $query = "SELECT selected_seat FROM tickets WHERE bus_operator = '$operator' AND departure_date = '$departureDate' AND from_location = '$fromLocation' AND to_location = '$toLocation'";
+    $result = mysqli_query($connection, $query);
+    
+    $occupiedSeats = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $occupiedSeats[] = $row['selected_seat'];  // Assuming selected_seat is stored in the 'selected_seat' column
+    }
+
+    // Return the occupied seats to the front-end
+    echo json_encode(['success' => true, 'occupied_seats' => $occupiedSeats]);
+}
+if ($_POST['action'] === 'update') {
+    $ticketId = $_POST['id'];
+    $seatNumbers = implode(',', $_POST['updates']['seat']); // If the seat data is in an array
+    $operator = $_POST['updates']['operator'];
+
+    // Update the ticket with the selected seats and bus operator
+    $updateQuery = "UPDATE tickets SET selected_seat = '$seatNumbers', bus_operator = '$operator' WHERE id = '$ticketId'";
+    $updateResult = mysqli_query($connection, $updateQuery);
+
+    echo json_encode(['success' => $updateResult]);
+}
+
+
 }
 ?>

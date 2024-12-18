@@ -1,0 +1,108 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="window_logo.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="Registration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>FairWheel Registration</title>
+</head>
+
+<body>
+<div class="Left-Photo"></div>
+<div class="registration-form">
+        <h2>Sign Up</h2>
+        <form action="Registration.php" method="POST" id="registrationForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required>
+
+            <label for="password">Password:</label>
+            <div class="password-wrapper">
+                <input type="password" id="Password" name="password" placeholder="Enter Password" required>
+                <i class="fa fa-eye-slash" id="togglePassword" onclick="togglePasswordVisibility('Password', 'togglePassword')"></i>
+            </div>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <div class="password-wrapper">
+                <input type="password" id="ConfirmPassword" name="confirmPassword" placeholder="Re-Enter Password" required>
+                <i class="fa fa-eye-slash" id="toggleConfirmPassword" onclick="togglePasswordVisibility('ConfirmPassword', 'toggleConfirmPassword')"></i>
+            </div>
+
+            <div class="otp-group">
+                <label for="otp">OTP:</label>
+                <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+                <button type="button" id="sendOtpButton" onclick="sendOtp()">Send OTP</button>
+            </div>
+
+            <button type="submit">Register</button>
+            <div class="Back_Login">
+                <p>Already have an Account? <a href="LoginFrom.php">Sign In</a></p>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+<script>
+        // Toggle Password Visibility
+        function togglePasswordVisibility(passwordFieldId, toggleButtonId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const toggleButton = document.getElementById(toggleButtonId);
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.className = "fa fa-eye"; // Change icon to eye
+            } else {
+                passwordField.type = "password";
+                toggleButton.className = "fa fa-eye-slash"; // Change icon back to eye-slash
+            }
+        }
+
+        // Send OTP via API Call
+        function sendOtp() {
+            const email = document.getElementById("email").value;
+            if (!email) {
+                alert("Please enter an email before sending OTP!");
+                return;
+            }
+
+            fetch("send_otp.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message || "OTP sent successfully.");
+                    } else {
+                        alert(data.error || "Failed to send OTP.");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+
+        function displayMessage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const message = urlParams.get('message');
+  if (message) {
+    alert(message);
+    // Clear the message from the URL (optional)
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}
+
+// Call the function when the page loads
+window.onload = displayMessage;
+    </script>
+
+</html>
