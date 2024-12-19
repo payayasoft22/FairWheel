@@ -398,7 +398,7 @@ button[type="submit"] {
     }
 
     button {
-        width: 100%;
+        width: 95%;
         padding: 12px;
         font-size: 16px;
     }
@@ -866,22 +866,25 @@ h2 {
             </div>
 
            
-    <div class="history-container">
+            <div class="history-container">
     <h2>History in FairWheel</h2>
-        <?php
-        if (!empty($history)) {
-            foreach ($history as $row) {
-                echo "<div class='history-record'>";
-                echo "<div><strong>Ticket #:</strong> " . htmlspecialchars($row['ticket_number']) . "</div>";
-                echo "<div><strong>Departure:</strong> " . htmlspecialchars($row['from_location']) . "</div>";
-                echo "<div><strong>Destination:</strong> " . htmlspecialchars($row['to_location']) . "</div>";
-                echo "<div><strong>Date:</strong> " . date("m-d-y", strtotime($row['departure_date'])) . "</div>";
-                echo "<div><strong>Status:</strong> " . htmlspecialchars($row['status']) . "</div>";
-                echo "</div>";
-            }
+    <?php
+    if (!empty($history)) {
+        foreach ($history as $row) {
+            echo "<div class='history-record'>";
+            echo "<div><strong>Ticket #:</strong> " . htmlspecialchars($row['ticket_number']) . "</div>";
+            echo "<div><strong>Departure:</strong> " . htmlspecialchars($row['from_location']) . "</div>";
+            echo "<div><strong>Destination:</strong> " . htmlspecialchars($row['to_location']) . "</div>";
+            echo "<div><strong>Date:</strong> " . date("m-d-y", strtotime($row['departure_date'])) . "</div>";
+            echo "<div><strong>Status:</strong> " . htmlspecialchars($row['status']) . "</div>";
+            echo "</div>";
         }
-        ?>
-    </div>
+    } else {
+        echo "<p>No history available.</p>";
+    }
+    ?>
+</div>
+
 
 
 
@@ -912,11 +915,6 @@ function saveChanges() {
     }
 
     console.log("Saved Completely!");
-
-
-    const messageContainer = document.getElementById("messageContainer");
-    messageContainer.innerHTML = "Saving changes...";
-
  
     fetch("Profile.php", {
         method: "POST",

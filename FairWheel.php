@@ -363,7 +363,7 @@ $conn->close();
             </div>
             <div class="footer-middle">
                 <p>Contact Us:</p>
-                <p>Email: info@fairwheel.com | Phone: +123 456 7890</p>
+                <p>Email: fairwheel.ph@gmail.com | Phone: +123 456 7890</p>
             </div>
             <div class="footer-right">
                 <p>Follow Us:</p>

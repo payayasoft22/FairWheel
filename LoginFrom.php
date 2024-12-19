@@ -215,6 +215,7 @@ p a:hover {
   }
 
   button {
+    
     padding: 12px;
     font-size: 0.9rem;
   }

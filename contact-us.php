@@ -1,7 +1,7 @@
 <?php
 function function_alert($message) {
 
-    echo "<script>alert('$message'); window.location.href = 'FairWheel.html';</script>";  // Redirect to new page after alert
+    echo "<script>alert('$message'); window.location.href = 'FairWheel.php';</script>";  // Redirect to new page after alert
 }
 
 
